@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>eelテスト</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h2>eelテスト</h2>
+        <label for="save_scv">csvファイル名</label>
+        <input type="text" id="save_scv" value="">
+        <br>
+        <label for="input_text">検索ワード</label>
+        <!-- テキストボックス、ここに入力されたテキストは"input_text"というidがつけられる -->
+        <input type="text" id="input_text" value="">
+        <!-- "送信"というボタンを押すと、func1()という関数が発動する -->
+        <input type="button" onclick="alert_send()" value="送信">
+        </br>
+        <br>
+          <textarea id="output_text" rows="4" cols="40"></textarea>
+        </br>
+        <script type="text/javascript" src="./eel.js"></script>
+        <script type="text/javascript">
+            function alert_send() {
+              let csv_file_name = document.getElementById("save_scv").value;
+              let i_t = document.getElementById("input_text").value;
+              if (i_t == ""){
+                 alert('空文字です');
+              }else{
+                eel.kimetsu_search(i_t,csv_file_name);
+              }}
+            eel.expose(view_log_js);
+            function view_log_js(text){
+              document.getElementById("output_text").innerHTML += text + "\n";
+              document.getElementById("input_text").value = "";
+            }
+            eel.kimetsu_search(word,csv_file_name);
+        </script>
+    </body>
+</html>
